@@ -7,6 +7,7 @@ public class VirtualJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 {
     public RectTransform thumb;
     public Vector2 delta;
+    public bool enableKeyboardControls;
 
     private Vector2 originalPosition;
     private Vector2 originalThumbPosition;
@@ -24,17 +25,20 @@ public class VirtualJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     // Keyboard controls
     void Update()
     {
-        delta.x = (Input.GetAxis("Horizontal"));
-        delta.y = (Input.GetAxis("Vertical"));
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (enableKeyboardControls)
         {
-            InputManager.instance.StartFiring();
-        }
+            delta.x = (Input.GetAxis("Horizontal"));
+            delta.y = (Input.GetAxis("Vertical"));
 
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            InputManager.instance.StopFiring();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                InputManager.instance.StartFiring();
+            }
+
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                InputManager.instance.StopFiring();
+            }
         }
     }
 
