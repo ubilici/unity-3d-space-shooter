@@ -3,11 +3,20 @@ using System.Collections;
 
 public class InputManager : Singleton<InputManager>
 {
+    public KeyboardMouseInput keyboardMouse;
     public VirtualJoystick steering;
     public float fireRate = 0.2f;
+    public bool enableKeyboardControls;
+    public GameObject virtualControls;
 
     private ShipWeapons currentWeapons;
     private bool isFiring = false;
+
+    void Start()
+    {
+        keyboardMouse.enableKeyboardControls = enableKeyboardControls;
+        virtualControls.SetActive(!enableKeyboardControls);
+    }
 
     public void SetWeapons(ShipWeapons weapons)
     {

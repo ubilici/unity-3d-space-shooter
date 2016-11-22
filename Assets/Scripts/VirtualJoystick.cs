@@ -22,26 +22,6 @@ public class VirtualJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         delta = Vector2.zero;
     }
 
-    // Keyboard controls
-    void Update()
-    {
-        if (enableKeyboardControls)
-        {
-            delta.x = (Input.GetAxis("Horizontal"));
-            delta.y = (Input.GetAxis("Vertical"));
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                InputManager.instance.StartFiring();
-            }
-
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                InputManager.instance.StopFiring();
-            }
-        }
-    }
-
     public void OnBeginDrag(PointerEventData eventData)
     {
         thumb.gameObject.SetActive(true);

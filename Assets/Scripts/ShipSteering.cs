@@ -8,7 +8,15 @@ public class ShipSteering : MonoBehaviour
 
     void Update()
     {
-        var steeringInput = InputManager.instance.steering.delta;
+        Vector2 steeringInput;
+        if (InputManager.instance.enableKeyboardControls)
+        {
+            steeringInput = InputManager.instance.keyboardMouse.delta;
+        }
+        else
+        {
+            steeringInput = InputManager.instance.steering.delta;
+        }
 
         var rotation = new Vector2();
 
