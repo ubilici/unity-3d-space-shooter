@@ -15,6 +15,12 @@ public class DamageTaking : MonoBehaviour
         if (hitPoints <= 0)
         {
             Debug.Log(gameObject.name + " destroyed!");
+
+            if (gameOverOnDestroyed)
+            {
+                GameManager.instance.GameOver();
+            }
+
             if(destrucitonPrefab != null)
             {
                 Instantiate(destrucitonPrefab, transform.position, transform.rotation);
