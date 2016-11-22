@@ -38,5 +38,11 @@ public class ShipWeapons : MonoBehaviour
         {
             firePointIndex = 0;
         }
+
+        var audio = firePointToUse.GetComponent<AudioSource>();
+        if (audio)
+        {
+            audio.Play();
+        }
     }
 }
